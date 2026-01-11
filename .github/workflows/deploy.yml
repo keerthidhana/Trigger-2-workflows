@@ -1,0 +1,17 @@
+ame: Deploy Workflow
+ 
+on:
+  workflow_run:
+    workflows: ["Build Workflow"]   # Name of first workflow
+    types:
+      - completed                   # Trigger when first workflow completes
+ 
+jobs:
+  deploy-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+ 
+      - name: Deploy project
+        run: echo "Deploying project after successful build!"
